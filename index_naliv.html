@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Крым. График наполненности водоналивных водохранилищ</title>
+    <link rel="stylesheet" type="text/css" href="style_naliv.css" />
+  </head>
+    
+    <!-- <div class="chart"><h2>Наполнение водохранилищ естественного стока</h2> -->
+    <div id="chartdiv2"></div></div>
+    <div class="colors">
+      <div class = "grid"><h4>Цвет сетки:</h4>
+      <input type="color" class="gridColor" value="black" />
+      <h4>Цвет текста:</h4>
+        <input type="color" class="textColor" value="black" /></div>
+      <div>
+          <input type="button" class="btn--apply" value="Применить изменения" />
+          <h4>Прозрачность столбцов:</h4>
+          <div class="opacity"> 
+            <input type="button" class="btn--opacity1" value="-" />
+            <h1 class="opacity--value">85%</h1>
+            <input type="button" class="btn--opacity2" value="+" />
+
+          </div>
+     
+
+      </div>
+      <div class="background"><h1>Цвет фона:</h1>
+      <input type="color" class="color1" value="#00ff00" />
+      <input type="color" class="color2" value="#ff0000" />
+      <input type="button" class="btn--random" value="Random color" />
+      <h3></h3>
+      
+    </div>
+    </div>
+    
+    
+
+    
+    <script type="module" src="script_naliv.js"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/plugins/venn.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/plugins/annotation.js"></script>
+  </body>
+</html>

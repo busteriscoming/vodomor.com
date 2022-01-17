@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Запасы пресной воды в водохранилищах Крыма</title>
+
+    <script defer="" type="module" src="script.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/plugins/venn.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/plugins/annotation.js"></script>
+    <!-- <script src="path/to/smooth-scroll.polyfills.min.js"></script> -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q1DQSCGNMR"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q1DQSCGNMR');
+    </script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        'script',
+        'https://mc.yandex.ru/metrika/tag.js',
+        'ym'
+      );
+
+      ym(78021064, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/78021064"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div>
+          <a>
+            <img
+              src="img/kamnilogo.png"
+              alt="logokamni"
+              class="nav__imagelogo"
+              onclick="window.scroll(0,0)"
+              href="#"
+          /></a>
+        </div>
+
+        <a class="nav__logo" onclick="window.scroll(0,0)" href="#">
+          <div class="nav__logo--text">Крым.</div>
+          <div>
+            <span> Запасы воды на полуострове</span>
+          </div>
+        </a>
+
+        <ul class="nav__links">
+          <li class="nav__item">
+            <a class="nav__link" href="#section--1">О ситуации</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#section--2">Статистика</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#section--3">Последние новости</a>
+          </li>
+          <li class="nav__item">
+            <a
+              class="nav__link nav__link--btn btn--show-modal"
+              href="#"
+              onclick="window.scroll(0,0)"
+              >Погода в Крыму</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <section class="header__title" id="section">
+        <div class="header_time">
+          <h5 id="time">Время</h5>
+          <h5 id="updateTime">Последнее обновление данных:</h5>
+        </div>
+        <div class="header__weather hidden">
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://embed.windy.com/embed2.html?lat=45.089&lon=34.266&detailLat=44.633&detailLon=34.102&width=400&height=300&zoom=6&level=surface&overlay=rain&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1"
+            frameborder="1"
+          ></iframe>
+        </div>
+
+        <div class="header__vodohr">
+          <h1>Наполнение водохранилищ Крыма</h1>
+        </div>
+        <div class="header__timer">
+          <h5>Северо-Крымский канал перекрыт уже:</h5>
+          <h5 id="timer">Таймер</h5>
+        </div>
+
+        <div class="header__vodohr--est">
+          <div class="header__vodohr--est-text">
+            <h3>Естественного стока:</h3>
+            <h4 class="header__vodohr--est-full" style="display: none">
+              Общий объём: 253,110 млн м³
+            </h4>
+
+            <h5>(пополняются за счёт речного стока)</h5>
+          </div>
+
+          <!-- <h4>Общий объём: 253,110 млн. куб. м.</h4>
+          <h4>Общий объём воды: 59,280 млн. куб. м. (23.4%)</h4> -->
+
+          <div id="est_stoka"></div>
+        </div>
+
+        <div class="header__allVodohr">
+          <!-- <h3>Все водохранилища Крыма:</h3>
+          <h4 id="fullCap">Общий объём:</h4>
+          <h4 id="fullFactCap">Общий объём воды:</h4> -->
+          <h2 id="chartdiv4"></h2>
+        </div>
+
+        <div class="header__vodohr--naliv">
+          <div class="header__vodohr--naliv-text">
+            <h3>Водоналивные:</h3>
+            <h4 class="header__vodohr--naliv-full" style="display: none">
+              Общий объём: 147,050 млн м³
+            </h4>
+
+            <h5>(пополнялись Северо-Крымским каналом)</h5>
+          </div>
+
+          <!-- <h4>Общий объём: 147,050 млн. куб. м.</h4>
+          <h4>Общий объём воды: 21,238 млн. куб. м. (23.4%)</h4> -->
+          <div id="naliv"></div>
+        </div>
+
+        <div class="header_bottom">
+          <button class="btn btn--text btn--scroll-to1">
+            Узнать больше &DownArrow;
+          </button>
+        </div>
+      </section>
+    </header>
+
+    <section
+      class="section parallax-container"
+      data-parallax="scroll"
+      data-position="top"
+      id="section--1"
+    >
+      <div class="section__title">
+        <h2 class="section__description">О ситуации</h2>
+        <h3 class="section__header">Надолго ли хватит пресной воды в Крыму?</h3>
+      </div>
+
+      <div class="features">
+        <img
+          src="img/image4-lazy.jpg"
+          data-src="img/image4.jpg"
+          alt="kanal"
+          class="features__img lazy-img"
+        />
+
+        <div class="features__feature">
+          <!-- <div class="features__icon">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-monitor"></use>
+            </svg>
+          </div> -->
+          <h2 class="features__header">Как было раньше?</h2>
+          <p>
+            Украина обеспечивала до 85% потребностей Крыма в пресной воде через
+            Северо-Крымский канал, соединяющий главное русло Днепра с
+            полуостровом. После аннексии Крыма Россией в 2014 году поставки воды
+            на полуостров прекратили. Водоналивные водохранилища, которые
+            наполнялись водой с Северо-Крымского канала - обмелели. Запасы воды
+            в Крыму пополняют из водохранилищ естественного стока и подземных
+            источников. C каждым годом наполнение водохранилищ снижается, реки
+            пересыхают, а регулярное использование воды из подземных источников
+            приводит к засолению почв на полуострове.
+          </p>
+        </div>
+
+        <div class="features__feature">
+          <!-- <div class="features__icon">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-trending-up"></use>
+            </svg>
+          </div> -->
+          <h2 class="features__header">Что с этим делают?</h2>
+          <p>
+            В 2020 году ситуация с водоснабжением в Крыму стала критической.
+            Маленькое количество осадков и малоснежная зима привела к засухе. С
+            конца августа 2020 графики подачи воды были введены в Симферополе, а
+            также в Симферопольском и Бахчисарайском районах. Позже это
+            коснулось Белогорска и Белогорского района и частично Алушты. Власти
+            России выделяют миллиарды рублей на строительство новых водоводов,
+            водозаборов и на бурение скважин. Все эти действия хоть и
+            отсрочивают приближающуюся гуманитарную катастрофу на полуострове,
+            но также ускоряют истощение и засоление подземных горизонтов.
+          </p>
+        </div>
+        <img
+          src="img/nabiraut_vodu-lazy.jpg"
+          data-src="img/nabiraut_vodu.png"
+          alt="Plant"
+          class="features__img lazy-img"
+        />
+
+        <img
+          src="img/oteli-lazy.jpg"
+          data-src="img/oteli.png"
+          alt="Credit card"
+          class="features__img lazy-img"
+        />
+        <div class="features__feature">
+          <!-- <div class="features__icon">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-credit-card"></use>
+            </svg>
+          </div> -->
+          <h2 class="features__header">Какая ситуация на данный момент?</h2>
+          <p>
+            К началу лета продолжалась интенсивная сработка оставшихся запасов
+            воды водохранилищ естественного стока, общий суммарный запас воды в
+            которых составил 79.24 млн.куб.м, что на 6.531 млн.куб.м меньше, чем
+            месяц назад и на 5.92 млн.куб.м меньше, чем год назад. Власти Крыма
+            всё больше ужесточают графики подачи воды для населения. Из-за
+            периодичности подачи воды сильно снизилось её качество и увеличилось
+            количество аварий в сетях. Ужесточение графиков связывают с
+            экономией воды для будущего курортного сезона и наплыва туристов с
+            России.
+          </p>
+        </div>
+      </div>
+      <div class="section1_bottom">
+        <div class="section1_bottom--btn">
+          <button class="btn btn--text btn--scroll-to2">
+            Перейти к графикам &DownArrow;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section--2">
+      <div class="section__title">
+        <h2 class="section__description">Статистика</h2>
+        <h3 class="section__header">Графики наполненности водохранилищ</h3>
+      </div>
+      <div class="map__vodohr--box">
+        <a class="map__vodohr">Карта водохранилищ Крыма</a>
+        <div class="map__vodohr--map hidden">
+          <img
+            class="map__vodohr--map-image"
+            src="img/mapvodohr.png"
+            alt="Map"
+          />
+        </div>
+      </div>
+      <div class="operations">
+        <div class="operations__tab-container">
+          <button class="btn operations__tab operations__tab--1" data-tab="1">
+            Изменение наполнения (2014 - н.в.)
+          </button>
+
+          <button class="btn operations__tab operations__tab--2" data-tab="2">
+            Водохранилища естественного стока
+          </button>
+          <button class="btn operations__tab operations__tab--3" data-tab="3">
+            Водоналивные водохранилища
+          </button>
+        </div>
+        <div class="operations__content operations__content--1">
+          <a
+            id="chartdiv--page"
+            class="btn--newPage"
+            href="index_timeline.html"
+            target="__blank"
+            >Открыть в отдельном окне
+          </a>
+          <div id="chartdiv3"></div>
+          <div id="legenddiv3"></div>
+        </div>
+        <div class="operations__content operations__content--2">
+          <a
+            id="chartdiv--page"
+            class="btn--newPage"
+            href="index_est.html"
+            target="__blank"
+            >Открыть в отдельном окне
+          </a>
+          <div id="chartdiv"></div>
+          <div id="legenddiv"></div>
+        </div>
+        <div class="operations__content operations__content--3">
+          <a
+            id="chartdiv--page"
+            class="btn--newPage"
+            href="index_naliv.html"
+            target="__blank"
+            >Открыть в отдельном окне
+          </a>
+          <div id="chartdiv2"></div>
+          <div id="legenddiv2"></div>
+        </div>
+        <div class="section2_bottom">
+          <div class="section1_bottom--btn">
+            <button class="btn btn--text btn--scroll-to3">
+              Перейти к новостям &DownArrow;
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section--3">
+      <div class="section__title section__title--testimonials">
+        <h2 class="section__description">Новости</h2>
+        <h3 class="section__header">Последние новости о водоснабжении Крыма</h3>
+      </div>
+      <div class="slider">
+        
+        <div class="slide slide--0">
+          <div class="testimonial testimonial-backquote">
+            <h5 class="testimonial__header">
+              Власти Алушты объявили о новом графике подачи воды
+            </h5>
+            <img
+              src="https://gdb.rferl.org/08ce3952-99d0-48fa-9066-eb323ec68115_w1023_r1_s.jpg"
+              alt=""
+              class="testimonial__photo"
+            />
+            <blockquote class="testimonial__text">
+              В российской администрации Алушты сообщают в пятницу, что с 25 июня в регионе действует новый график подачи воды.
+«Администрацией Алушты принято решение о введении нового графика подачи воды с 25 июня. Вода будет подаваться потребителям с 06.00 до 23.00», – говорится в сообщении администрации.
+            </blockquote>
+            <address class="testimonial__author">
+              <h6 class="testimonial__name">25 июня 2021 года</h6>
+              <p class="testimonial__location">
+                Взято с сайта krymr.com
+                <a
+                  class="testimonial__link"
+                  href="https://ru.krymr.com/a/news-krym-alushta-novy-grafik-podachi-vody/31325503.html"
+                  target="__blank"
+                  >Ссылка на новость</a
+                >
+              </p>
+            </address>
+          </div>
+        </div>
+        <div class="slide slide--0">
+          <div class="testimonial testimonial-backquote">
+            <h5 class="testimonial__header">
+              Засуха – в прошлом? Удалось ли ливням и паводкам спасти Крым от безводия 
+            </h5>
+            <img
+              src="https://gdb.rferl.org/7d64d324-753f-4bf3-b301-82881d167f51_w1023_r1_s.jpg"
+              alt=""
+              class="testimonial__photo"
+            />
+            <blockquote class="testimonial__text">
+              Аномальные ливни, обрушившиеся на Крым в конце прошлой недели, затопили сразу несколько районов полуострова, нанесли значительный ущерб инфраструктуре крымских городов и поселков и даже стали причиной гибели людей. В то же время подконтрольные Кремлю власти заявляют, что после столь обильных осадков Крыму точно не грозит засуха, господствовавшая на полуострове в течение всего прошлого года.
+            </blockquote>
+            <address class="testimonial__author">
+              <h6 class="testimonial__name">23 июня 2021 года</h6>
+              <p class="testimonial__location">
+                Взято с сайта krymr.com
+                <a
+                  class="testimonial__link"
+                  href="https://ru.krymr.com/a/vodokhranilishcha-krym-zapolneniye-livni-vodosnabzheniye/31322675.html"
+                  target="__blank"
+                  >Ссылка на новость</a
+                >
+              </p>
+            </address>
+          </div>
+        </div>
+        <div class="slide slide--0">
+          <div class="testimonial testimonial-backquote">
+            <h5 class="testimonial__header">
+              После потопа в водохранилищах Ялты накопилось до 24,5 млн кубометров воды – Павленко 
+            <img
+              src="https://gdb.rferl.org/97ffea0a-7070-442e-8574-c1e9d9507994_w1023_r1_s.jpg"
+              alt=""
+              class="testimonial__photo"
+            />
+            <blockquote class="testimonial__text">
+              После обильных осадков, которые выпали в Крыму на прошлой неделе, в водохранилищах Ялты накопилось 24,5 миллиона кубометров воды, сообщила глава российской администрации Ялты Янина Павленко. 
+            </blockquote>
+            <address class="testimonial__author">
+              <h6 class="testimonial__name">22 июня 2021 года</h6>
+              <p class="testimonial__location">
+                Взято с сайта krymr.com
+                <a
+                  class="testimonial__link"
+                  href="https://ru.krymr.com/a/news-krym-vodohranilischa-yalty-zapolneny-do-24-millionov-kubometrov-vody/31320211.html"
+                  target="__blank"
+                  >Ссылка на новость</a
+                >
+              </p>
+            </address>
+          </div>
+        </div>
+        <div class="slide slide--0">
+          <div class="testimonial testimonial-backquote">
+            <h5 class="testimonial__header">
+              Власти Севастополя заявили о наполнении Чернореченского
+              водохранилища
+            </h5>
+            <img
+              src="https://gdb.rferl.org/d4bace7b-74cc-4be4-94c4-6390c7fc9b37_w1023_r1_s.jpg"
+              alt=""
+              class="testimonial__photo"
+            />
+            <blockquote class="testimonial__text">
+              Об этом 21 июня сказал подконтрольный Кремлю замглавы
+              аннексированного Севастополя Николай Жигулин. «Около 50 млн кубов
+              у нас будет [уровень водохранилища благодаря ливням]. Это
+              позволяет нам прогнозировать, что до сентября следующего года в
+              случае невыпадения осадков вообще все равно сможем обеспечивать
+              город», – цитирует Жигулина ТАСС.
+            </blockquote>
+            <address class="testimonial__author">
+              <h6 class="testimonial__name">21 июня 2021 года</h6>
+              <p class="testimonial__location">
+                Взято с сайта krymr.com
+                <a
+                  class="testimonial__link"
+                  href="https://ru.krymr.com/a/news-krym-sevastopol-chernorechenskoye-vodohranilistche/31318825.html"
+                  target="__blank"
+                  >Ссылка на новость</a
+                >
+              </p>
+            </address>
+          </div>
+        </div>
+
+        <button class="slider__btn slider__btn--left">&larr;</button>
+        <button class="slider__btn slider__btn--right">&rarr;</button>
+        <div class="dots"></div>
+      </div>
+    </section>
+
+    <section class="section" id="section--sign-up">
+      <div class="section__title">
+        <h3 class="section__header">
+          Хочешь помочь с поиском статистики? Есть вопросы или предложения?
+          Присоединяйся в нашу группу в Telegram.
+        </h3>
+      </div>
+      <p>
+        <img
+          src="https://telegram.org/img/t_logo.svg?1"
+          alt=""
+          style="width: 5vw"
+        />
+      </p>
+      <a href="https://t.me/krimskiy_vodomor" target="__blank"
+        ><button class="btn btn--show-modal">Присоединиться</button></a
+      >
+    </section>
+
+    <footer class="footer">
+      <p class="footer__copyright">
+        Новости и фото взяты с сайта<a
+          class="footer__link twitter-link"
+          target="_blank"
+          href="https://ru.krymr.com/"
+        >
+          Крым.Реалии</a
+        >. Статистика взята с Википедии и публикаций оккупационных властей АРК.
+      </p>
+      <p class="footer__copyright">
+        &copy; Сreated by
+        <a
+          class="footer__link twitter-link"
+          target="_blank"
+          href="https://www.youtube.com/buster_is_coming"
+          >Buster is coming</a
+        >. При поддержке анонов с /po.
+        <a class="footer__link twitter-link footer-feedback"
+          >Связаться с нами</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>

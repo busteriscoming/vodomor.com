@@ -1,0 +1,284 @@
+body {
+  font: 'Raleway', sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  top: 15%;
+  background: linear-gradient(to right, red, yellow);
+}
+
+h1 {
+  font: 600 20px 'Raleway', sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  letter-spacing: 0.01em;
+}
+
+h4 {
+  letter-spacing: 0.1em;
+}
+
+h3 {
+  font: 900 1em 'Raleway', sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  opacity: 1;
+  padding: 20;
+}
+
+.colors {
+  padding-top: 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-self: center;
+}
+/* .grid {
+  
+} */
+
+.btn--random {
+  display: inline-block;
+  padding: 5px 25px;
+  font-size: 20px;
+  font-style: inherit;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: rgb(22, 4, 4);
+  background: linear-gradient(to left, red, yellow);
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+.btn--random:hover {
+  background: linear-gradient(to right, red, yellow);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn--random:active {
+  background-color: #3e8e41;
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5), 0 9px 25px 0 rgba(0, 0, 0, 0.5);
+
+  transform: translateY(4px);
+}
+.opacity {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.btn--opacity1 {
+  display: inline-block;
+  /* padding: 5px 25px; */
+  font-size: 20px;
+  font-style: inherit;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: rgb(22, 4, 4);
+  background: linear-gradient(to left, red, yellow);
+  border: 2px solid black;
+  border-radius: 15px;
+}
+.btn--opacity1:hover {
+  /* background: linear-gradient(to right, red, yellow); */
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn--opacity1:active {
+  background-color: #3e8e41;
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5), 0 9px 25px 0 rgba(0, 0, 0, 0.5);
+
+  transform: translateY(4px);
+}
+
+.btn--opacity2 {
+  display: inline-block;
+  /* padding: 5px 25px; */
+  font-size: 20px;
+  font-style: inherit;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: rgb(22, 4, 4);
+  background: linear-gradient(to left, red, yellow);
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+.btn--opacity2:hover {
+  /* background: linear-gradient(to right, red, yellow); */
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn--opacity2:active {
+  background-color: #3e8e41;
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5), 0 9px 25px 0 rgba(0, 0, 0, 0.5);
+
+  transform: translateY(4px);
+}
+
+.btn--apply {
+  display: inline-block;
+  padding: 10px 25px;
+  font-size: 20px;
+  font-style: inherit;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: rgb(22, 4, 4);
+  background: linear-gradient(to left, red, yellow);
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+.btn--apply:hover {
+  /* background: linear-gradient(to right, red, yellow); */
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.5), 0 17px 50px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn--apply:active {
+  background-color: #3e8e41;
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5), 0 9px 25px 0 rgba(0, 0, 0, 0.5);
+
+  transform: translateY(4px);
+}
+
+#chartdiv3 {
+  width: 100%;
+  height: 95vh;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+@media only screen and (min-width: 1600px) {
+  #chartdiv3 {
+    font-size: 1.4rem;
+  }
+}
+@media only screen and (max-width: 1420px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  #chartdiv3 {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  #chartdiv3 {
+    font-size: 0.8rem;
+    height: 140vh;
+  }
+  h1 {
+    font: 600 1rem 'Raleway', sans-serif;
+  }
+  h4 {
+    font: 600 0.8rem 'Raleway', sans-serif;
+  }
+  h3 {
+    font: 900 0.8em 'Raleway', sans-serif;
+  }
+  .btn--apply {
+    font-size: 1rem;
+  }
+  .btn--random {
+    font-size: 1rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #chartdiv3 {
+    font-size: 0.6rem;
+    height: 140vh;
+  }
+  h1 {
+    font: 600 0.9rem 'Raleway', sans-serif;
+  }
+  h4 {
+    font: 600 0.7rem 'Raleway', sans-serif;
+  }
+  h3 {
+    font: 900 0.7em 'Raleway', sans-serif;
+  }
+  .btn--apply {
+    font-size: 0.9rem;
+  }
+  .btn--random {
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (max-width: 705px) {
+  #chartdiv3 {
+    font-size: 0.6rem;
+    height: 160vh;
+  }
+  h1 {
+    font: 600 0.9rem 'Raleway', sans-serif;
+  }
+  h4 {
+    font: 600 0.7rem 'Raleway', sans-serif;
+  }
+  h3 {
+    font: 900 0.7em 'Raleway', sans-serif;
+  }
+  .btn--apply {
+    font-size: 0.9rem;
+  }
+  .btn--random {
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #chartdiv3 {
+    font-size: 0.4rem;
+    height: 100vh;
+    width: 100%;
+  }
+  h1 {
+    font: 600 0.8rem 'Raleway', sans-serif;
+  }
+  h4 {
+    font: 600 0.5rem 'Raleway', sans-serif;
+  }
+  h3 {
+    font: 900 0.4em 'Raleway', sans-serif;
+  }
+  .btn--apply {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+  .btn--random {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+}
+@media only screen and (max-width: 325px) {
+  #chartdiv3 {
+    font-size: 0.4rem;
+    height: 100vh;
+    width: 100%;
+  }
+  h1 {
+    font: 600 0.8rem 'Raleway', sans-serif;
+  }
+  h4 {
+    font: 600 0.5rem 'Raleway', sans-serif;
+  }
+  h3 {
+    font: 900 0.4em 'Raleway', sans-serif;
+  }
+  .btn--apply {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+  .btn--random {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+}
